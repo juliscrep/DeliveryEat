@@ -10,9 +10,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, RouterModule.forRoot([
-      { path: 'Pedidos', component: PedidoComponentComponent}
-    ])
+    AppRoutingModule //, RouterModule.forRoot([
+     // { path: 'Pedidos', component: PedidoComponentComponent}    ])
   ],
   providers: [],
   bootstrap: [AppComponent,PedidoComponentComponent]
