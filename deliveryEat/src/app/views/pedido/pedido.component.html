@@ -1,1 +1,24 @@
-<p>pedido works!</p>
+<div class="row mt-4">
+
+    <div class="col-12">
+        <div class="ml-1 clickeable" style="color: gray;" (click)="prevStep()">
+            <i class="fa fa-chevron-left fa-2x " aria-hidden="true"></i>
+        </div>
+
+        <h2 class="text-center" style="margin-top: -2.4rem;">
+            Pedir "lo que sea"
+        </h2>
+    </div>
+</div>
+
+<ng-container [ngSwitch]="step">
+    <div class="full-height">
+        <app-pedido-component *ngSwitchCase="0"></app-pedido-component>
+        <app-direccion *ngSwitchCase="1"></app-direccion>
+        <app-forma-pago-component *ngSwitchCase="2"></app-forma-pago-component>
+        <app-forma-entrega-component *ngSwitchCase="3"></app-forma-entrega-component>
+    </div>
+</ng-container>
+
+<button type="button" class="align-self-end btn btn-lg btn-block btn-warning" style="margin-top: auto;"
+    (click)="nextStep()">Siguiente</button>
