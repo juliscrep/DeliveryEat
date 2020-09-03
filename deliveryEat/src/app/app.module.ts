@@ -4,6 +4,7 @@ import {PedidoComponentComponent} from './components/pedido-component/pedido-com
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import {TopBarComponent} from './shared/top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule , RouterModule.forRoot([
-     { path: 'Pedidos', component: PedidoComponentComponent}    ])
+     { path: "Pedidos", component: PedidoComponentComponent}    ])
   ],
   providers: [],
-  bootstrap: [AppComponent,PedidoComponentComponent]
+  bootstrap: [AppComponent,PedidoComponentComponent,TopBarComponent]
 })
 export class AppModule { }
