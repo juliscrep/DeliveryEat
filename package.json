@@ -1,6 +1,7 @@
 {
-  "name": "deliveryeat",
+  "name": "package.json",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,11 +15,5 @@
   "bugs": {
     "url": "https://github.com/juliscrep/DeliveryEat/issues"
   },
-  "homepage": "https://github.com/juliscrep/DeliveryEat#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {},
-  "keywords": [],
-  "description": ""
+  "homepage": "https://github.com/juliscrep/DeliveryEat#readme"
 }
