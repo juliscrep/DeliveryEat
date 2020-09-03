@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PedidoComponentComponent } from './pedido-component/pedido-component.component';
-import { FormaPagoComponentComponent } from './forma-pago-component/forma-pago-component.component';
-import { FormaEntregaComponentComponent } from './forma-entrega-component/forma-entrega-component.component';
-import { FeedbackComponentComponent } from './feedback-component/feedback-component.component';
-import { DireccionComponent } from './direccion/direccion.component';
+import { PedidoComponentComponent } from './steps-pedido-lo-que-sea/pedido-component/pedido-component.component';
+import { FormaPagoComponentComponent } from './steps-pedido-lo-que-sea/forma-pago-component/forma-pago-component.component';
+import { FormaEntregaComponentComponent } from './steps-pedido-lo-que-sea/forma-entrega-component/forma-entrega-component.component';
+import { FeedbackComponentComponent } from './steps-pedido-lo-que-sea/feedback-component/feedback-component.component';
+import { DireccionComponent } from './steps-pedido-lo-que-sea/direccion/direccion.component';
 
 
 
