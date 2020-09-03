@@ -4,6 +4,7 @@ import { PedidoComponentComponent } from './pedido-component/pedido-component.co
 import { FormaPagoComponentComponent } from './forma-pago-component/forma-pago-component.component';
 import { FormaEntregaComponentComponent } from './forma-entrega-component/forma-entrega-component.component';
 import { FeedbackComponentComponent } from './feedback-component/feedback-component.component';
+import { DireccionComponent } from './direccion/direccion.component';
 
 
 
@@ -12,13 +13,15 @@ import { FeedbackComponentComponent } from './feedback-component/feedback-compon
     PedidoComponentComponent,
     FormaPagoComponentComponent,
     FormaEntregaComponentComponent,
-    FeedbackComponentComponent
+    FeedbackComponentComponent,
+    DireccionComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
     PedidoComponentComponent,
+    DireccionComponent,
     FormaPagoComponentComponent,
     FormaEntregaComponentComponent,
     FeedbackComponentComponent
