@@ -32,7 +32,7 @@ export class PedidoComponent {
 
   }
    
-  prevStep() {
+  /*prevStep() {
     this.step > 0 ? this.step -- : this.goToHome();
   }
 
@@ -41,3 +41,4 @@ export class PedidoComponent {
     response && this.router.navigate(['/']);
   }
 }
+*/
