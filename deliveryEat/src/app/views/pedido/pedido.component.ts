@@ -15,7 +15,7 @@ export class PedidoComponent {
   ) { }
 
   nextStep() {
-    (this.step < 3) && (this.step ++);
+    (this.step < 4) && (this.step ++);
   }
 
   prevStep() {
