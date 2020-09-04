@@ -22,7 +22,7 @@ export class PedidoComponent {
     
     this.addressService.getLocalidadesByProvincia('cordoba')
       .subscribe( loc => {
-        this.localidades = sortCitiesByName(loc);
+        this.localidades = sortCitiesByName(loc.localidades);
       });
    }
 

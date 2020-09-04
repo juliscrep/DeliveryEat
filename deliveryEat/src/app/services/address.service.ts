@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AddressService {
     return this.localidadesBaseURL + `?provincia=${ provincia.toLocaleLowerCase() }&max=1000`
   }
 
-  public getLocalidadesByProvincia( provincia: string ) {
+  public getLocalidadesByProvincia( provincia: string )  : Observable<any> {
     return this.http.get(this.getLocalidadesURL(provincia));
   }
 }
