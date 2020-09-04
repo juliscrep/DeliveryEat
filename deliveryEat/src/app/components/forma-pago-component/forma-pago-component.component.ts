@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forma-pago-component.component.css']
 })
 export class FormaPagoComponentComponent implements OnInit {
-
+  mostrarSelec=true
   constructor() { }
 
   ngOnInit(): void {
