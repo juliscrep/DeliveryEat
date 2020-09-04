@@ -23,9 +23,4 @@ export class FormaPagoComponentComponent {
 
   constructor() { }
 
-  onMethodChange(){
-    console.log(this.formaDePagoSeleccionada);
-    
-  }
-
 }
