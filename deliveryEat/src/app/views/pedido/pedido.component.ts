@@ -22,7 +22,7 @@ export class PedidoComponent {
     
     this.addressService.getLocalidadesByProvincia('cordoba')
       .subscribe( loc => {
-        this.localidades = sortCitiesByName(loc.localidades);
+        this.localidades = sortCitiesByName(loc);
       });
    }
 
@@ -30,9 +30,9 @@ export class PedidoComponent {
     (this.step < 4) && (this.step ++);
   }
 
-  }
+  
    
-  /*prevStep() {
+  prevStep() {
     this.step > 0 ? this.step -- : this.goToHome();
   }
 
@@ -40,5 +40,5 @@ export class PedidoComponent {
     let response = confirm("¿Desea volver al home?");
     response && this.router.navigate(['/']);
   }
+
 }
-*/

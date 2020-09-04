@@ -17,13 +17,10 @@
         <app-direccion [localidades]="localidades" *ngSwitchCase="1"></app-direccion>
         <app-forma-pago-component *ngSwitchCase="2"></app-forma-pago-component>
         <app-forma-entrega-component *ngSwitchCase="3"></app-forma-entrega-component>
-<<<<<<< HEAD
-        <app-feedback-component *ngSwitchCase="4"></app-feedback-component>
-=======
         <app-resumen-pedido *ngSwitchCase="4"></app-resumen-pedido>
->>>>>>> 6a6b0ee2d3cc06e062b10ef79c44467a91aa4dd3
+
     </div>
 </ng-container>
 
 <button type="button" class="align-self-end btn btn-lg btn-block btn-warning" style="margin-top: auto;"
-    (click)="nextStep()&&FuncBoton()" *ngIf="ocultarBoton">Siguiente</button>
+    (click)="nextStep()">Siguiente</button>
