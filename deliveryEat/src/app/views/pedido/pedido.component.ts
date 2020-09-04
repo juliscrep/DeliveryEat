@@ -9,15 +9,10 @@ import { AddressService } from '../../services/address.service';
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent {
-<<<<<<< HEAD
-  ocultarBoton=true
-  step = 0;
-=======
 
   step = 2;
 
   localidades = [];
->>>>>>> 6a6b0ee2d3cc06e062b10ef79c44467a91aa4dd3
 
   constructor(
     private router: Router,
@@ -32,20 +27,11 @@ export class PedidoComponent {
    }
 
   nextStep() {
-<<<<<<< HEAD
-    (this.step<=3) && (this.step ++) && this.FuncBoton;
-=======
     (this.step < 4) && (this.step ++);
   }
->>>>>>> 6a6b0ee2d3cc06e062b10ef79c44467a91aa4dd3
 
   }
-  FuncBoton(){
-    if(this.step==4){
-      this.ocultarBoton=false;
-    }
-  }
-  
+   
   prevStep() {
     this.step > 0 ? this.step -- : this.goToHome();
   }
