@@ -4,14 +4,19 @@
     <div class="row justify-content-center mt-5">
         <div class="col-xs-6">
             <div class="form-group">
-                <label for="id-producto">¿Que debe buscar el cadete?</label>
-                <textarea class="form-control" name="" id="id-producto" cols="30" rows="3" placeholder="Buscar sarasa"></textarea>
+                <label for="id-producto" class="row justify-content-center"> <strong>¿Que debe buscar el cadete? </strong></label>
+                <textarea class="form-control" name="" id="id-producto" cols="50" rows="5" placeholder="Indica que contendra tu pedido"></textarea>
             </div>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-xs-6">
-           aca se va a tomar el archivo
+            <div class="field">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                <label for="#elegir"><strong>Puedes incluir una fotografia descriptiva: </strong>  </label>
+                <br>
+                <input id="elegir" name="uploadedfile" type="file" /><br />
+            </div>
         </div>
     </div>
 </div>
