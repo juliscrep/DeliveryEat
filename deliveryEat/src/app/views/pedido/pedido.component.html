@@ -23,4 +23,4 @@
 </ng-container>
 
 <button type="button" class="align-self-end btn btn-lg btn-block btn-warning" style="margin-top: auto;"
-    (click)="nextStep()">Siguiente</button>
+    (click)="nextStep()&&FuncBoton()" *ngIf="ocultarBoton">Siguiente</button>

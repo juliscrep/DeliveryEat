@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent {
-
+  ocultarBoton=true
   step = 0;
 
   constructor(
@@ -15,9 +15,15 @@ export class PedidoComponent {
   ) { }
 
   nextStep() {
-    (this.step < 4) && (this.step ++);
-  }
+    (this.step < 4) && (this.step ++) && this.FuncBoton;
 
+  }
+  FuncBoton(){
+    if(this.step==3){
+      this.ocultarBoton=false;
+    }
+  }
+  
   prevStep() {
     this.step > 0 ? this.step -- : this.goToHome();
   }
