@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormaEntregaComponentComponent implements OnInit {
 
+  formasDeEntrega = [
+    "Lo antes posible",
+    "Fecha/hora"
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

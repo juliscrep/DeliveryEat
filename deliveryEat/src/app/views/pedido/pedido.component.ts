@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import sortCitiesByName from '../../helpers/sortCities.helper';
+import { AddressService } from '../../services/address.service';
 
 @Component({
   selector: 'app-pedido',
@@ -7,15 +9,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent {
+<<<<<<< HEAD
   ocultarBoton=true
   step = 0;
+=======
+
+  step = 2;
+
+  localidades = [];
+>>>>>>> 6a6b0ee2d3cc06e062b10ef79c44467a91aa4dd3
 
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private addressService: AddressService,
+  ) {
+    console.log('Inicia la busqueda');
+    
+    this.addressService.getLocalidadesByProvincia('cordoba')
+      .subscribe( loc => {
+        this.localidades = sortCitiesByName(loc.localidades);
+      });
+   }
 
   nextStep() {
+<<<<<<< HEAD
     (this.step<=3) && (this.step ++) && this.FuncBoton;
+=======
+    (this.step < 4) && (this.step ++);
+  }
+>>>>>>> 6a6b0ee2d3cc06e062b10ef79c44467a91aa4dd3
 
   }
   FuncBoton(){
