@@ -1,1 +1,22 @@
-<p>direccion works!</p>
+<div class="row justify-content-center mt-2">
+    <div class="col-10 col-md-6">
+      <div class="form-group">
+        <label for="ciudadSelect">Seleccione su ciudad</label>
+        <select class="form-control max-width" id="ciudadSelect">
+          <ng-container *ngFor="let loc of localidades">
+            <option>{{ loc.nombre }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Calle y número">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control"  placeholder="Referencia (opcional)">
+      </div>
+    </div>
+
+    <div class="col-10">
+      Aca va el mapa
+    </div>
+</div>

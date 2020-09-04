@@ -1,1 +1,23 @@
-<p>forma-entrega-component works!</p>
+<div class="row justify-content-center mt-2">
+    <div class="col-10 col-md-6">
+      <div class="form-group">
+        <label for="ciudadSelect">¿Cuando quiere recibirlo?</label>
+        <select class="form-control max-width" id="ciudadSelect">
+          <ng-container *ngFor="let fde of formasDeEntrega">
+            <option>{{ fde }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="datetime-local" class="form-control" placeholder="Fecha y hora">
+      </div>
+    </div>
+
+    <div class="col-10">
+      <hr>
+      <h4>Su vuelto:</h4>
+      <h4 class="text-center">
+        $500
+      </h4>
+    </div>
+</div>

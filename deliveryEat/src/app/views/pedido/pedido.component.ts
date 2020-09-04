@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import sortCitiesByName from '../../helpers/sortCities.helper';
 import { AddressService } from '../../services/address.service';
 
 @Component({
@@ -9,20 +10,24 @@ import { AddressService } from '../../services/address.service';
 })
 export class PedidoComponent {
 
-  step = 0;
+  step = 3;
+
+  localidades = [];
 
   constructor(
     private router: Router,
-    private addressService: AddressService
+    private addressService: AddressService,
   ) {
     console.log('Inicia la busqueda');
     
     this.addressService.getLocalidadesByProvincia('cordoba')
-      .subscribe( loc => console.log(loc) );
+      .subscribe( loc => {
+        this.localidades = sortCitiesByName(loc.localidades);
+      });
    }
 
   nextStep() {
-    (this.step < 3) && (this.step ++);
+    (this.step < 4) && (this.step ++);
   }
 
   prevStep() {
