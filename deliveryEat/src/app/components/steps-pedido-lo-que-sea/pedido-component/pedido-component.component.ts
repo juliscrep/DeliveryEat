@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pedido-component.component.html',
   styleUrls: ['./pedido-component.component.css']
 })
-export class PedidoComponentComponent implements OnInit {
+export class PedidoComponentComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
+  selectImage( image ) {
+    console.log(image);
   }
 
 }

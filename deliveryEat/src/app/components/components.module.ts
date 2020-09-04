@@ -11,6 +11,7 @@ import { CreditCardComponent } from './UI/formasDePago/credit-card/credit-card.c
 import { PagoEfectivoComponent } from './UI/formasDePago/pago-efectivo/pago-efectivo.component';
 import { ResumenPedidoComponent } from './steps-pedido-lo-que-sea/resumen-pedido/resumen-pedido.component';
 import { SharedModule } from '../shared/shared.module';
+import { UploadImageComponent } from './UI/upload-image/upload-image.component';
 
 
 
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     ResumenPedidoComponent,
     CreditCardComponent,
     PagoEfectivoComponent,
+    UploadImageComponent,
   ],
   imports: [
     SharedModule
@@ -34,7 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     FormaPagoComponentComponent,
     FormaEntregaComponentComponent,
     FeedbackComponentComponent,
-    ResumenPedidoComponent
+    ResumenPedidoComponent,
   ]
 })
 export class ComponentsModule { }

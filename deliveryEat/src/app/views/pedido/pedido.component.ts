@@ -10,7 +10,7 @@ import { AddressService } from '../../services/address.service';
 })
 export class PedidoComponent {
 
-  step = 2;
+  step = 0;
 
   localidades = [];
 
