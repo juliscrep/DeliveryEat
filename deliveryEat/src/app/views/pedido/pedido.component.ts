@@ -15,11 +15,11 @@ export class PedidoComponent {
   ) { }
 
   nextStep() {
-    (this.step < 4) && (this.step ++) && this.FuncBoton;
+    (this.step<=3) && (this.step ++) && this.FuncBoton;
 
   }
   FuncBoton(){
-    if(this.step==3){
+    if(this.step==4){
       this.ocultarBoton=false;
     }
   }
