@@ -12,6 +12,7 @@ import { PagoEfectivoComponent } from './UI/formasDePago/pago-efectivo/pago-efec
 import { ResumenPedidoComponent } from './steps-pedido-lo-que-sea/resumen-pedido/resumen-pedido.component';
 import { SharedModule } from '../shared/shared.module';
 import { UploadImageComponent } from './UI/upload-image/upload-image.component';
+import { MapaComponent } from './UI/mapa/mapa.component';
 
 
 
@@ -26,6 +27,7 @@ import { UploadImageComponent } from './UI/upload-image/upload-image.component';
     CreditCardComponent,
     PagoEfectivoComponent,
     UploadImageComponent,
+    MapaComponent,
   ],
   imports: [
     SharedModule

@@ -13,8 +13,23 @@
 
 <ng-container [ngSwitch]="step">
     <div class="full-height">
-        <app-pedido-component *ngSwitchCase="0"></app-pedido-component>
-        <app-direccion [localidades]="localidades" *ngSwitchCase="1"></app-direccion>
+        <app-pedido-component 
+            [(precio)]="pedido.pago.montoPagar" 
+            [(descripcion)]="pedido.descripcion" 
+            [(image)]="pedido.imagen" 
+            *ngSwitchCase="0"></app-pedido-component>
+
+
+        <app-direccion 
+            [(localidades)]="localidades" 
+            [(ciudad)]="pedido.direccionEntrega.ciudad" 
+            [(direccion)]="pedido.direccionEntrega.direccion" 
+            [(referencia)]="pedido.direccionEntrega.referencia" 
+            [(latitud)]="pedido.direccionEntrega.latitud" 
+            [(longitud)]="pedido.direccionEntrega.longitud" 
+             *ngSwitchCase="1"></app-direccion>
+
+             
         <app-forma-pago-component *ngSwitchCase="2"></app-forma-pago-component>
         <app-forma-entrega-component *ngSwitchCase="3"></app-forma-entrega-component>
         <app-feedback-component *ngSwitchCase="4"></app-feedback-component>
