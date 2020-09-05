@@ -23,6 +23,8 @@ export class UploadImageComponent {
 
     if(!this.checkMaxSize(file)) { return; }
 
+    console.log(file);
+    
     this.fileSeleccionado.emit(file);
 
     this.showImage(file);

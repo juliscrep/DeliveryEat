@@ -2,15 +2,21 @@
     <div class="col-10 col-md-6">
         <div class="form-group">
             <label for="id-producto"><strong>¿Que debe buscar el cadete? </strong> </label>
-            <textarea class="form-control" name="" id="id-producto" cols="30" rows="3"
-                placeholder="Buscar sarasa"></textarea>
+            <textarea class="form-control" name="descripcion" id="id-producto" cols="30" rows="3"
+                placeholder="Buscar sarasa"
+                [(ngModel)]="descripcion"
+                (keyup)="this.descripcionChange.emit(this.descripcion)"
+                ></textarea>
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
             </div>
-            <input type="number" class="form-control" id="inlineFormInputGroupUsername"
-                placeholder="Precio del producto">
+            <input type="number" class="form-control" id="precioProductoid"
+                placeholder="Precio del producto"
+                name="precioProducto"
+                [(ngModel)]="precio"
+                (keyup)="this.precioChange.emit(this.precio)">
         </div>
     </div>
 </div>
