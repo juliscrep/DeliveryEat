@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
+
 
 // Componentes
 import { PedidoComponentComponent } from './steps-pedido-lo-que-sea/pedido-component/pedido-component.component';
@@ -30,7 +32,10 @@ import { MapaComponent } from './UI/mapa/mapa.component';
     MapaComponent,
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDGruSoP5nGcOlW0s6e4JFE7JIah6N0FaA'   
+   })
   ],
   exports: [
     PedidoComponentComponent,
