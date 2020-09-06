@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./pedido-component.component.css']
 })
 export class PedidoComponentComponent {
-  PedidoForm: FormGroup;
+  public PedidoForm: FormGroup;
 /*
   @Input() precio: number;
   @Output() precioChange : EventEmitter< number >;

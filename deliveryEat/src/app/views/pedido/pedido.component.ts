@@ -50,7 +50,7 @@ export class PedidoComponent implements OnInit {
   }
 
   nextStep() {
-    (this.step < 4) && (this.step++);
+    (this.step < 4)&& (this.step++);
     console.log(this.pedido);    
   }
 

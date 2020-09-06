@@ -1,5 +1,6 @@
 <div class="row justify-content-center mt-2">
     <div class="col-10 col-md-6">
+      <form [formGroup]="DireccionForm">
       <div class="form-group">
         <select class="form-control max-width" id="ciudadSelect" name="ciudad" [(ngModel)]="ciudad" (change)="ciudadChange.emit(ciudad)">
           <option value="">Seleccione su ciudad</option>
@@ -9,11 +10,34 @@
         </select>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Calle y número" name="calleNumero" [(ngModel)]="direccion" (change)="direccionChange.emit(direccion)">
+        <input type="text" class="form-control" placeholder="Calle y número" name="calleNumero" 
+        formControlName="callePedido">
+        <span class="help-block" *ngIf="((DireccionForm.get('callePedido').touched ||
+        DireccionForm.get('callePedido').dirty) &&
+        DireccionForm.get('callePedido').errors)">
+                    <span *ngIf="DireccionForm.get('callePedido').errors.required">
+                        <h6>Campo requerido</h6>
+                    </span>
+                    <span *ngIf="DireccionForm.get('callePedido').errors.maxlength">
+                        <h6>Ingrese como máximo 100 caracteres </h6>
+                    </span>
+                
+</span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Referencia (opcional)" name="referencia" [(ngModel)]="referencia" (change)="referenciaChange.emit(referencia)">
+        <input type="text" class="form-control"  placeholder="Referencia (opcional)" 
+        name="referencia" 
+        formControlName="referenciaPedido">
+        <span class="help-block" *ngIf="((DireccionForm.get('referenciaPedido').touched ||
+        DireccionForm.get('referenciaPedido').dirty) &&
+        DireccionForm.get('referenciaPedido').errors)">
+                    <span *ngIf="DireccionForm.get('referenciaPedido').errors.maxlength">
+                        <h6>Ingrese como máximo 150 caracteres </h6>
+                    </span>
+                
+</span>
       </div>
+      </form>
     </div>
 
     <div class="col-10">
