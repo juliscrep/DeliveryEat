@@ -21,6 +21,9 @@
                     <span *ngIf="DireccionForm.get('callePedido').errors.maxlength">
                         <h6>Ingrese como máximo 100 caracteres </h6>
                     </span>
+                    <span *ngIf="DireccionForm.get('callePedido').errors.pattern">
+                      <h6>Ingrese calle y altura </h6>
+                  </span>
                 
 </span>
       </div>
