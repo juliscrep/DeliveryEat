@@ -1,6 +1,24 @@
-<div class="input-group">
+<div class="row justify-content-center mt-2">
+
     <div class="input-group-prepend">
         <div class="input-group-text">$</div>
     </div>
-    <input type="number" class="form-control" id="montoid" name="monto" placeholder="Precio del producto" [(ngModel)]="monto">
+    <form [formGroup]="EfectivoForm">
+    <input type="number" class="form-control" id="montoid" name="monto" placeholder="Monto a abonar" 
+    formControlName="precioPedido"
+                value=10 >
+                <span class="help-block" *ngIf="((EfectivoForm.get('precioPedido').touched ||
+                EfectivoForm.get('precioPedido').dirty) &&
+                EfectivoForm.get('precioPedido').errors)">
+                                                <span *ngIf="EfectivoForm.get('precioPedido').errors.required">
+                                                    <h6>Campo requerido</h6>
+                                                </span>
+                                                <span *ngIf="EfectivoForm.get('precioPedido').errors.pattern">
+                                                    <h6>Formato no válido</h6>
+                                                </span>
+                                               <span *ngIf="esNoValido()">
+                                                <h6>Monto inválido</h6>
+                                               </span> 
+                </span>
+</form>
 </div>

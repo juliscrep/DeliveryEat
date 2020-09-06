@@ -41,9 +41,7 @@ export class DireccionComponent {
    initForm(){
      this.DireccionForm= new FormGroup({
  
-      callePedido:new FormControl('',[Validators.maxLength(100),Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[^A-Z]*[A-Z])(?=.*[^0-9]*[0-9])[a-zA-Z0-9!@$]{8,15}$')
-
-    ]),
+      callePedido:new FormControl('',[Validators.maxLength(100),Validators.required]),
        referenciaPedido:new FormControl('',[Validators.maxLength(150)]),
      })
    }
