@@ -1,9 +1,13 @@
-
+<form [formGroup]="DireccionForm">
 <ng-container *ngIf="!url">
     <div class="field">
         <label for="#fileupload"><strong>Puedes incluir una fotografia descriptiva: </strong>  </label>
         <br>
-        <input type="file" id="fileupload" #imageUpload (change)="imageUploadEvent($event)" accept="image/jpg">
+        <input type="file" id="fileupload" #imageUpload (change)="imageUploadEvent($event)"
+        formControlName="imagenPed" accept="image/jpg">
+        <span *ngIf=!fileValidation()>
+            <h6 class="helpError">Extensiones del archivo permitidas .png /.jpg.</h6>
+        </span>
     </div>
     
 </ng-container>
@@ -17,3 +21,4 @@
     </div>
 </ng-container>
 
+</form>
