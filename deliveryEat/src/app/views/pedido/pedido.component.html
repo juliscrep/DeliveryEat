@@ -37,5 +37,5 @@
     </div>
 </ng-container>
 
-<button type="button" class="align-self-end btn btn-lg btn-block btn-warning" style="margin-top: auto;"
+<button type="button" *ngIf="step<4" class="align-self-end btn btn-lg btn-block btn-warning" style="margin-top: auto;"
     (click)="nextStep()">Siguiente</button>
