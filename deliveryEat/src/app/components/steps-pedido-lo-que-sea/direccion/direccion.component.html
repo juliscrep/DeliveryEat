@@ -1,6 +1,6 @@
 <div class="row justify-content-center mt-2">
     <div class="col-10 col-md-6">
-      <form [formGroup]="DireccionForm">
+    <form [formGroup]="DireccionForm">
       <div class="form-group">
         <select class="form-control max-width" id="ciudadSelect" name="ciudad" [(ngModel)]="ciudad" (change)="ciudadChange.emit(ciudad)">
           <option value="">Seleccione su ciudad</option>
@@ -10,7 +10,7 @@
         </select>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Calle y número" name="calleNumero" 
+        <input type="text" class="form-control" placeholder="Calle" name="calle" 
         formControlName="callePedido">
         <span class="help-block" *ngIf="((DireccionForm.get('callePedido').touched ||
         DireccionForm.get('callePedido').dirty) &&
@@ -21,10 +21,22 @@
                     <span *ngIf="DireccionForm.get('callePedido').errors.maxlength">
                         <h6>Ingrese como máximo 100 caracteres </h6>
                     </span>
-                    <span *ngIf="DireccionForm.get('callePedido').errors.pattern">
-                      <h6>Ingrese calle y altura </h6>
-                  </span>
                 
+              </span>
+      </div> 
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Altura" name="Numero" 
+  formControlName="numeroPedido">
+  <span class="help-block" *ngIf="((DireccionForm.get('numeroPedido').touched ||
+  DireccionForm.get('numeroPedido').dirty) &&
+  DireccionForm.get('numeroPedido').errors)">
+              <span *ngIf="DireccionForm.get('numeroPedido').errors.required">
+                  <h6>Campo requerido</h6>
+              </span>
+              <span *ngIf="DireccionForm.get('numeroPedido').errors.pattern">
+                <h6>Ingrese entre 2 y 4 dígitos numéricos</h6>
+            </span>
+          
 </span>
       </div>
       <div class="form-group">
@@ -40,7 +52,7 @@
                 
 </span>
       </div>
-      </form>
+</form>
     </div>
 
     <div class="col-10">

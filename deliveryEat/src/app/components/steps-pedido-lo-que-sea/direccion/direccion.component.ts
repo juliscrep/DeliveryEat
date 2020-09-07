@@ -42,7 +42,8 @@ export class DireccionComponent {
      this.DireccionForm= new FormGroup({
  
       callePedido:new FormControl('',[Validators.maxLength(100),Validators.required]),
-       referenciaPedido:new FormControl('',[Validators.maxLength(150)]),
+      referenciaPedido:new FormControl('',[Validators.maxLength(150)]),
+      numeroPedido: new FormControl('',[Validators.required,Validators.pattern('[0-9]{2,4}')])
      })
    }
 }
