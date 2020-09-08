@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-pago-efectivo',
@@ -8,23 +8,51 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class PagoEfectivoComponent implements OnInit {
   public EfectivoForm: FormGroup;
   @Input() monto;
+  @Output() montoChange: EventEmitter<number>;
 
-  constructor() { }
+  @Output() validEvent: EventEmitter<boolean>;
+
+
+  constructor() { 
+    this.montoChange = new EventEmitter();
+    this.validEvent = new EventEmitter();
+  }
 
   ngOnInit(): void {
     this.initForm();
+    this.setData();
+    this.createListeners();
   }
   
   initForm(){
     this.EfectivoForm= new FormGroup({
 
-      precioPedido:new FormControl('',[Validators.pattern('^[0-9]{5}')
-      ,Validators.required]),
+      precioPedido:new FormControl('',[Validators.required]),
       
     })
   }
-  esNoValido(){
-    return this.EfectivoForm.controls.precioPedido.value < 10;
+
+  setData(){
+    this.EfectivoForm.reset({
+      precioPedido: this.monto
+    });
+  }
+
+  getMonto(){
+    return this.EfectivoForm.get('precioPedido').value;
+  }
+
+  setAndEmitMonto( value ) {
+    this.monto = value;
+    this.montoChange.emit( this.monto );
+  }
+
+  createListeners() {
+    this.EfectivoForm.statusChanges.subscribe(status => {
+      this.setAndEmitMonto(this.getMonto());
+
+      this.validEvent.emit(status!=='INVALID');
+    });
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormasDePagoEnum } from '../../../domain/enums/formasDePago.enum'
+import { Pago } from 'src/app/domain/interfaces/pago.interface';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-forma-pago-component',
@@ -7,6 +9,11 @@ import { FormasDePagoEnum } from '../../../domain/enums/formasDePago.enum'
   styleUrls: ['./forma-pago-component.component.css']
 })
 export class FormaPagoComponentComponent {
+
+  @Input() pago: Pago;
+  @Output() pagoChange: EventEmitter<Pago>;
+
+  @Output() validEvent: EventEmitter<boolean>;
 
   formasDePago = [
     {
@@ -17,10 +24,27 @@ export class FormaPagoComponentComponent {
       nombre: 'Tarjeta de Credito',
       value: FormasDePagoEnum.TarjetaCredito
     }
-  ]
+  ];
 
-  formaDePagoSeleccionada = FormasDePagoEnum.Efectivo;
+  constructor() {
+    this.pagoChange = new EventEmitter();
+    this.validEvent = new EventEmitter();
+   }
 
-  constructor() { }
+  setFormaDePago() {
+    if ( this.pago.formaDePago === FormasDePagoEnum.Efectivo ){
+      this.pago.tarjeta = null;
+    } else {
+      this.pago.conCuantoPaga = null;
+    }
 
+    this.isValid(false);
+    this.pagoChange.emit(this.pago);
+  }
+
+  isValid( value ) {
+    console.log(value);
+    
+    this.validEvent.emit( value );
+  }
 }

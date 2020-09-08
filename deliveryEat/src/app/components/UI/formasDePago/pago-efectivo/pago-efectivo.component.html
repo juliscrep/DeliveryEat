@@ -13,12 +13,6 @@
                                                 <span *ngIf="EfectivoForm.get('precioPedido').errors.required">
                                                     <h6>Campo requerido</h6>
                                                 </span>
-                                                <span *ngIf="EfectivoForm.get('precioPedido').errors.pattern">
-                                                    <h6>Formato no válido</h6>
-                                                </span>
-                                               <span *ngIf="esNoValido()">
-                                                <h6>Monto inválido</h6>
-                                               </span> 
                 </span>
 </form>
 </div>
