@@ -1,5 +1,6 @@
 export interface Direccion {
-    direccion: string;
+    calle: string;
+    numero: string;
     referencia: string;
     ciudad: string;
     latitud: string;

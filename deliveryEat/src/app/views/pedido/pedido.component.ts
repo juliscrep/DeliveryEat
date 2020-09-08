@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { Pedido } from '../../domain/interfaces/pedido.interface';
 import sortCitiesByName from '../../helpers/sortCities.helper';
 import { AddressService } from '../../services/address.service';
-import {ComponentsModule} from '../../components/components.module';
+import { ComponentsModule } from '../../components/components.module';
+import { FormasDePagoEnum } from 'src/app/domain/enums/formasDePago.enum';
+import { FormasDeEntregaEnum } from 'src/app/domain/enums/formasDeEntrega.enum';
 
 @Component({
   selector: 'app-pedido',
@@ -14,6 +16,9 @@ export class PedidoComponent implements OnInit {
 
   step = 0;
   pedido: Pedido;
+  validaciones;
+
+  isLoading: boolean;
 
   localidades = [];
 
@@ -22,39 +27,52 @@ export class PedidoComponent implements OnInit {
     private addressService: AddressService,
     private modulos: ComponentsModule,
   ) {
+    this.validaciones = new Array();
+
     this.pedido = {
-      descripcion: 'asdasd',
+      descripcion: '',
       imagen: null,
       pago: {
-        montoPagar: 0,
-        formaDePago: '',
-        tarjeta: null
+        montoPagar: null,
+        formaDePago: FormasDePagoEnum.Efectivo,
+        tarjeta: {
+          nombre: '',
+          numero: '',
+          cvv: '',
+          vencimiento: '',
+          brand: ''
+        },
+        conCuantoPaga: null
       },
       direccionEntrega: {
         ciudad: '',
-        direccion: '',
+        calle: '',
+        numero: '',
         referencia: '',
         latitud: '',
         longitud: ''
       },
       entrega: {
         fechaHora: '',
-        formaDeEntrega: '',
-      }
+        formaDeEntrega: FormasDeEntregaEnum.LoAntesPosible,
+      },
+      direccionRetiroDelProducto: ''
     };
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.addressService.getLocalidadesByProvincia('cordoba')
       .subscribe(loc => {
         this.localidades = sortCitiesByName(loc.localidades);
+        this.isLoading = false;
       });
   }
 
   nextStep() {
-    (this.step < 4)&& (this.step++);
-    console.log(this.pedido); 
-    this.modulos   
+    (this.step < 4 && this.validaciones[this.step]) && (this.step++);
+    console.log(this.pedido);
+    this.modulos
   }
 
   prevStep() {
@@ -66,7 +84,9 @@ export class PedidoComponent implements OnInit {
     response && this.router.navigate(['/']);
   }
 
-  setImage( image ) {
+  setValidacion(step, result) {
+    this.validaciones[step] = result;
+    console.log(this.validaciones);
 
   }
 

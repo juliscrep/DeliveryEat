@@ -26,6 +26,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ReactiveFormsModule,
     TopBarComponent, 
     FooterComponent,
+    SpinnerComponent,
     SpinnerComponent
   ]
 })

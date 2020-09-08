@@ -20,4 +20,4 @@ const isVisaCard = ( number ) => {
     return brand === 'visa'
 }
 
-export default isVisaCard;
+export {isVisaCard, getCardType};

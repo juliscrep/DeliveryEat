@@ -1,7 +1,7 @@
 export interface Card {
-    numero: number;
+    numero: string;
     nombre: string;
-    cvv: number;
+    cvv: number | string;
     vencimiento: string;
     brand?: string; 
 }
