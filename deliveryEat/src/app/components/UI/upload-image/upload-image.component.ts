@@ -21,7 +21,7 @@ export class UploadImageComponent {
 
     const file = evt.target.files[0];
 
-    if(!this.checkMaxSize(file)) { return; }
+    //if(!this.checkMaxSize(file)) { return; }
 
     console.log(file);
     

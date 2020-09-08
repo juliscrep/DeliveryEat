@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-mapa',
@@ -7,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
-  title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007;
+  @Input() lat;
+  @Input() lng;
 
-  constructor() { }
+  @Input() latM;
+  @Input() lngM
+
+  @Output() coordenadas: EventEmitter<any>;
+
+  constructor() {
+    this.coordenadas = new EventEmitter();
+  }
 
   ngOnInit(): void {
   }
@@ -23,6 +29,9 @@ export class MapaComponent implements OnInit {
   }
 
   updateMarket(lat: number, lng: number) {
-    console.log(lat, lng);
+    this.latM = lat;
+    this.lngM = lng;
+
+    this.coordenadas.emit( {lat: this.latM, lng: this.lngM} );
   }
 }

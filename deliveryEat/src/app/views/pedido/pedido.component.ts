@@ -21,10 +21,10 @@ export class PedidoComponent implements OnInit {
     private addressService: AddressService,
   ) {
     this.pedido = {
-      descripcion: 'asdasd',
+      descripcion: '',
       imagen: null,
       pago: {
-        montoPagar: 0,
+        montoPagar: null,
         formaDePago: '',
         tarjeta: null
       },
@@ -38,7 +38,8 @@ export class PedidoComponent implements OnInit {
       entrega: {
         fechaHora: '',
         formaDeEntrega: '',
-      }
+      },
+      direccionRetiroDelProducto: ''
     };
   }
 

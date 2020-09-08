@@ -7,5 +7,6 @@ export interface Pedido {
     imagen: File;
     pago: Pago;
     entrega?: Entrega;
+    direccionRetiroDelProducto: string;
     direccionEntrega: Direccion;
 }

@@ -1,7 +1,7 @@
 <div class="row justify-content-center mt-2">
     <div class="col-10 col-md-6">
       <div class="form-group">
-        <select class="form-control max-width" id="ciudadSelect" name="ciudad" [(ngModel)]="ciudad" (change)="ciudadChange.emit(ciudad)">
+        <select class="form-control max-width" id="ciudadSelect" name="ciudad" [(ngModel)]="ciudad" (change)="setCity()">
           <option value="">Seleccione su ciudad</option>
           <ng-container *ngFor="let loc of localidades">
             <option [value]="loc.nombre">{{ loc.nombre }}</option>
@@ -9,14 +9,14 @@
         </select>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Calle y número" name="calleNumero" [(ngModel)]="direccion" (change)="direccionChange.emit(direccion)">
+        <input type="text" class="form-control"  [disabled]="!enable" placeholder="Calle y número" name="calleNumero" [(ngModel)]="direccion" (change)="direccionChange.emit(direccion)">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control"  placeholder="Referencia (opcional)" name="referencia" [(ngModel)]="referencia" (change)="referenciaChange.emit(referencia)">
+        <input type="text" class="form-control" placeholder="Referencia (opcional)" name="referencia" [(ngModel)]="referencia" (change)="referenciaChange.emit(referencia)">
       </div>
     </div>
 
     <div class="col-10">
-      <app-mapa></app-mapa>
+      <app-mapa [lat]="lat" [lng]="lng" [latM]="latM" [lngM]="lngM" (coordenadas)="setCoordenadas( $event )"></app-mapa>
     </div>
 </div>

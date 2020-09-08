@@ -3,26 +3,35 @@
         <div class="form-group">
             <label for="id-producto"><strong>¿Que debe buscar el cadete? </strong> </label>
             <textarea class="form-control" name="descripcion" id="id-producto" cols="30" rows="3"
-                placeholder="Buscar sarasa"
-                [(ngModel)]="descripcion"
-                (keyup)="this.descripcionChange.emit(this.descripcion)"
-                ></textarea>
+                placeholder="Buscar sarasa" [(ngModel)]="descripcion"
+                (keydown)="this.descripcionChange.emit(this.descripcion)"></textarea>
+            <div class="invalid-feedback d-block" *ngIf="errors.descripcion">
+                {{errors.descripcion}}
+            </div>
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
             </div>
-            <input type="number" class="form-control" id="precioProductoid"
-                placeholder="Precio del producto"
-                name="precioProducto"
-                [(ngModel)]="precio"
-                (keyup)="this.precioChange.emit(this.precio)">
+            <input type="number" class="form-control" id="precioProductoid" placeholder="Precio del producto"
+                name="precioProducto" [(ngModel)]="precio" (keydown)="this.precioChange.emit(this.precio)">
+            <div class="invalid-feedback d-block" *ngIf="errors.precio">
+                {{errors.precio}}
+            </div>
+        </div>
+
+        <input type="string" class="form-control mt-1" id="direccionLocal"
+            placeholder="Dirección de retiro del producto" name="direccionLocal"
+            [(ngModel)]="direccionRetiroDelProducto"
+            (keydown)="this.direccionRetiroDelProductoChange.emit(this.direccionRetiroDelProducto)">
+        <div class="invalid-feedback d-block" *ngIf="errors.direccion">
+            {{errors.direccion}}
         </div>
     </div>
 </div>
 
 <div class="row justify-content-center mt-5">
     <div class="col-xs-6">
-        <app-upload-image (fileSeleccionado)="selectImage( $event )"></app-upload-image>
+        <app-upload-image (fileSeleccionado)="selectImage($event)"></app-upload-image>
     </div>
 </div>

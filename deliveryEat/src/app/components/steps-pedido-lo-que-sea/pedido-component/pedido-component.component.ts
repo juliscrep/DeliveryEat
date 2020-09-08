@@ -11,24 +11,31 @@ export class PedidoComponentComponent {
   @Output() precioChange : EventEmitter< number >;
   @Input() descripcion: string;
   @Output() descripcionChange : EventEmitter< string >;
+  @Input() direccionRetiroDelProducto: string;
+  @Output() direccionRetiroDelProductoChange : EventEmitter< string >;
 
   @Input() imagen: File
   @Output() imagenChange : EventEmitter< File >;
 
+  @Output() validateEvent: EventEmitter<boolean>;
+
+  errors = {
+    precio: '',
+    descripcion: '',
+    direccion: ''
+  }
+
+
   constructor() { 
     this.precioChange = new EventEmitter();
     this.descripcionChange = new EventEmitter();
+    this.direccionRetiroDelProductoChange = new EventEmitter();
     this.imagenChange = new EventEmitter();
+    this.validateEvent = new EventEmitter();
   }
 
   selectImage( image ) {
-    console.log(this.imagen);
-    this.imagenChange.emit(image);
+    this.imagen = image;
+    this.imagenChange.emit(this.imagen);
   }
-
-  test(){
-    console.log(this.descripcion);
-    
-  }
-
 }

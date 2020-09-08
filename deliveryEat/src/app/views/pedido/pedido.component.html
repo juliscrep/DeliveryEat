@@ -15,7 +15,8 @@
     <div class="full-height">
         <app-pedido-component 
             [(precio)]="pedido.pago.montoPagar" 
-            [(descripcion)]="pedido.descripcion" 
+            [(descripcion)]="pedido.descripcion"
+            [(direccionRetiroDelProducto)]="pedido.direccionRetiroDelProducto" 
             [(image)]="pedido.imagen" 
             *ngSwitchCase="0"></app-pedido-component>
 
