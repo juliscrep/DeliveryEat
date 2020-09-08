@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/domain/interfaces/pedido.interface';
 
 @Component({
