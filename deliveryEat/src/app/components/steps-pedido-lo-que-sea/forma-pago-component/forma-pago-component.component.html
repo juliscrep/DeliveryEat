@@ -14,7 +14,7 @@
 
     <div class="col-10">
       <hr>
-      <app-pago-efectivo [(monto)]="pago.conCuantoPaga" (validEvent)="isValid($event)" *ngIf="pago.formaDePago === 'Efectivo'"></app-pago-efectivo>
+      <app-pago-efectivo [(monto)]="pago.conCuantoPaga" [precioPedido]="pago.montoPagar" (validEvent)="isValid($event)" *ngIf="pago.formaDePago === 'Efectivo'"></app-pago-efectivo>
       <app-credit-card [(card)]="pago.tarjeta" (validEvent)="isValid($event)" *ngIf="pago.formaDePago === 'TarjetaCredito'"></app-credit-card>
     </div>
 </div>

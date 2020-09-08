@@ -13,6 +13,18 @@
                                                 <span *ngIf="EfectivoForm.get('precioPedido').errors.required">
                                                     <h6>Campo requerido</h6>
                                                 </span>
+
+                </span>
+                <span *ngIf="isMontoInvalido()">
+                    <h6>El monto debe ser mayor a {{this.precioPedido}}</h6>
                 </span>
 </form>
+
+<div class="col-10">
+    <hr>
+    <h4>Su vuelto:</h4>
+    <h4 class="text-center">
+      ${{ vuelto }}
+    </h4>
+  </div>
 </div>

@@ -6,8 +6,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./pago-efectivo.component.css']
 })
 export class PagoEfectivoComponent implements OnInit {
+  public vuelto = 0;
+  public MontoInvalido = false;
   public EfectivoForm: FormGroup;
   @Input() monto;
+  @Input() precioPedido;
   @Output() montoChange: EventEmitter<number>;
 
   @Output() validEvent: EventEmitter<boolean>;
@@ -40,9 +43,24 @@ export class PagoEfectivoComponent implements OnInit {
     return this.EfectivoForm.get('precioPedido').value;
   }
 
+  isMontoInvalido(){
+    debugger;
+    return this.monto < this.precioPedido;
+  }
+
   setAndEmitMonto( value ) {
     this.monto = value;
     this.montoChange.emit( this.monto );
+    this.calcularVuelto();
+  }
+
+  calcularVuelto(){
+    if ( this.monto - this.precioPedido > 0){
+      this.vuelto = this.monto - this.precioPedido;
+    }
+    else{
+      this.vuelto = 0;
+    }
   }
 
   createListeners() {
