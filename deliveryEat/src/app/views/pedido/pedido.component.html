@@ -39,7 +39,15 @@
                 [(pago)]="pedido.pago"
                 (validEvent)="setValidacion( 2, $event )"
                 *ngSwitchCase="2"></app-forma-pago-component>
-            <app-forma-entrega-component *ngSwitchCase="3"></app-forma-entrega-component>
+
+
+            <app-forma-entrega-component 
+                [(entrega)]="pedido.entrega"
+                [(pago)]="pedido.entrega"
+                (validEvent)="setValidacion( 3, $event )"
+                *ngSwitchCase="3"></app-forma-entrega-component>
+
+
             <app-feedback-component *ngSwitchCase="4"></app-feedback-component>
     
         </div>

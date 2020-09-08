@@ -5,6 +5,7 @@ import sortCitiesByName from '../../helpers/sortCities.helper';
 import { AddressService } from '../../services/address.service';
 import { ComponentsModule } from '../../components/components.module';
 import { FormasDePagoEnum } from 'src/app/domain/enums/formasDePago.enum';
+import { FormasDeEntregaEnum } from 'src/app/domain/enums/formasDeEntrega.enum';
 
 @Component({
   selector: 'app-pedido',
@@ -13,7 +14,7 @@ import { FormasDePagoEnum } from 'src/app/domain/enums/formasDePago.enum';
 })
 export class PedidoComponent implements OnInit {
 
-  step = 2;
+  step = 0;
   pedido: Pedido;
   validaciones;
 
@@ -53,7 +54,7 @@ export class PedidoComponent implements OnInit {
       },
       entrega: {
         fechaHora: '',
-        formaDeEntrega: '',
+        formaDeEntrega: FormasDeEntregaEnum.LoAntesPosible,
       },
       direccionRetiroDelProducto: ''
     };
