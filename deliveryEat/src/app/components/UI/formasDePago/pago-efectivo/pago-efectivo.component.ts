@@ -44,7 +44,6 @@ export class PagoEfectivoComponent implements OnInit {
   }
 
   isMontoInvalido(){
-    debugger;
     return this.monto < this.precioPedido;
   }
 
