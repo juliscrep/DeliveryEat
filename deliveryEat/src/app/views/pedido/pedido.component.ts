@@ -70,7 +70,7 @@ export class PedidoComponent implements OnInit {
   }
 
   nextStep() {
-    (this.step < 4 && this.validaciones[this.step]) && (this.step++);
+    (this.step < 5 && this.validaciones[this.step]) && (this.step++);
     console.log(this.pedido);
     this.modulos
   }
