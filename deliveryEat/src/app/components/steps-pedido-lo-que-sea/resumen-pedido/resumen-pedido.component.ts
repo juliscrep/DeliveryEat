@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Pedido } from 'src/app/domain/interfaces/pedido.interface';
 
 @Component({
   selector: 'app-resumen-pedido',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resumen-pedido.component.css']
 })
 export class ResumenPedidoComponent implements OnInit {
-
+  
+  @Input() pedido: Pedido;
+  
   constructor() { }
 
   ngOnInit(): void {
