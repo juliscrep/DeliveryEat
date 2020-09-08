@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Pedido } from '../../domain/interfaces/pedido.interface';
 import sortCitiesByName from '../../helpers/sortCities.helper';
 import { AddressService } from '../../services/address.service';
-import {ComponentsModule} from '../../components/components.module';
+import { ComponentsModule } from '../../components/components.module';
 import { FormasDePagoEnum } from 'src/app/domain/enums/formasDePago.enum';
 
 @Component({
@@ -34,7 +34,13 @@ export class PedidoComponent implements OnInit {
       pago: {
         montoPagar: null,
         formaDePago: FormasDePagoEnum.Efectivo,
-        tarjeta: null,
+        tarjeta: {
+          nombre: '',
+          numero: '',
+          cvv: '',
+          vencimiento: '',
+          brand: ''
+        },
         conCuantoPaga: null
       },
       direccionEntrega: {
@@ -63,9 +69,9 @@ export class PedidoComponent implements OnInit {
   }
 
   nextStep() {
-    (this.step < 4 && this.validaciones[this.step])&& (this.step++);
-    console.log(this.pedido); 
-    this.modulos   
+    (this.step < 4 && this.validaciones[this.step]) && (this.step++);
+    console.log(this.pedido);
+    this.modulos
   }
 
   prevStep() {
@@ -77,10 +83,10 @@ export class PedidoComponent implements OnInit {
     response && this.router.navigate(['/']);
   }
 
-  setValidacion( step, result ) {
+  setValidacion(step, result) {
     this.validaciones[step] = result;
     console.log(this.validaciones);
-    
+
   }
 
 }

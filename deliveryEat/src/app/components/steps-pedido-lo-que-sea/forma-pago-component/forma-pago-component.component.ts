@@ -33,7 +33,13 @@ export class FormaPagoComponentComponent {
 
   setFormaDePago() {
     if ( this.pago.formaDePago === FormasDePagoEnum.Efectivo ){
-      this.pago.tarjeta = null;
+      this.pago.tarjeta = {
+        nombre: '',
+        numero: '',
+        cvv: '',
+        vencimiento: '',
+        brand: ''
+      };
     } else {
       this.pago.conCuantoPaga = null;
     }

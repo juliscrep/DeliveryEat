@@ -24,11 +24,9 @@ export class PagoEfectivoComponent implements OnInit {
     this.createListeners();
   }
   
-  initForm(){
+  initForm() {
     this.EfectivoForm= new FormGroup({
-
       precioPedido:new FormControl('',[Validators.required]),
-      
     })
   }
 

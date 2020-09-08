@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Card } from '../../../../domain/interfaces/card.interface'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { isVisaCard, getCardType } from '../../../../helpers/cardBrand.helper'
 
 @Component({
@@ -7,23 +8,36 @@ import { isVisaCard, getCardType } from '../../../../helpers/cardBrand.helper'
   templateUrl: './credit-card.component.html',
   styleUrls: ['./credit-card.component.css']
 })
-export class CreditCardComponent {
+export class CreditCardComponent implements OnInit {
+  public cardForm: FormGroup;
 
-  @Output() validateEvent: EventEmitter<boolean>;
   @Input() card: Card;
+  @Output() cardChange: EventEmitter<Card>;
+
   ano = '';
   mes = '';
 
-  constructor() {
-    this.validateEvent = new EventEmitter();
+  @Output() validEvent: EventEmitter<boolean>;
 
-    this.card = {
-      nombre: '',
-      numero: '',
-      cvv: '',
-      vencimiento: '',
-      brand: ''
-    }
+
+  constructor() {
+    this.cardChange = new EventEmitter();
+    this.validEvent = new EventEmitter();
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.createListeners();
+  }
+
+  initForm() {
+    this.cardForm = new FormGroup({
+      nombreForm: new FormControl('', [Validators.required]),
+      numeroForm: new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
+      cvvForm: new FormControl('', [Validators.required]),
+      mesForm: new FormControl('', [Validators.required]),
+      anoForm: new FormControl('', [Validators.required]),
+    })
   }
 
   setCardBrand() {
@@ -52,17 +66,64 @@ export class CreditCardComponent {
     this.card.vencimiento = !this.mes || !this.ano ? null : this.mes + '/' + this.ano;
   }
 
-  validate() {
-    let validate = true;
-    ( !this.card.nombre ) && (validate = false);
-    ( !this.card.vencimiento ) && (validate = false);
-    ( !this.card.cvv ) && (validate = false);
-
-    ( !this.card.numero ) && (validate = false);
-    ( !isVisaCard(this.card.numero) ) && (validate = false);
-    ( this.card.numero.length !== 16 ) && (validate = false);
-   
-    this.validateEvent.emit( validate );
+  setNombre(value) {
+    console.log(this.card);
+    
+    this.card.nombre = value;
   }
 
+  setNumero(value) {
+    this.card.numero = value;
+  }
+
+  setCVV(value) {
+    this.card.cvv = value;
+  }
+
+  setAno(value) {
+    this.ano = value;
+    this.setDate();
+  }
+
+  setMes(value) {
+    this.mes = value;
+    this.setDate();
+  }
+
+  getNombre() {
+    return this.cardForm.get('nombreForm').value;
+  }
+
+  getNumero() {
+    return this.cardForm.get('numeroForm').value;
+  }
+
+  getCVV() {
+    return this.cardForm.get('cvvForm').value;
+  }
+
+  getAno() {
+    return this.cardForm.get('anoForm').value;
+  }
+
+  getMes() {
+    return this.cardForm.get('mesForm').value;
+  }
+
+  createListeners() {
+    this.cardForm.statusChanges.subscribe(status => {
+      this.setNombre(this.getNombre());
+      this.setNumero(this.getNumero());
+      this.setCVV(this.getCVV());
+      this.setAno(this.getAno());
+      this.setMes(this.getMes());
+      
+      this.cardChange.emit( this.card );
+
+      console.log(this.card);
+      
+
+      this.validEvent.emit(status !== 'INVALID' && isVisaCard(this.card.numero) );
+    });
+  }
 }
