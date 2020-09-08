@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './direccion.component.html',
   styleUrls: ['./direccion.component.css']
 })
-export class DireccionComponent implements OnInit{
+export class DireccionComponent implements OnInit {
   public DireccionForm: FormGroup;
 
   @Input() localidades = [];
@@ -13,8 +13,11 @@ export class DireccionComponent implements OnInit{
   @Input() ciudad;
   @Output() ciudadChange: EventEmitter<string>;
 
-  @Input() direccion;
-  @Output() direccionChange: EventEmitter<string>;
+  @Input() calle;
+  @Output() calleChange: EventEmitter<string>;
+
+  @Input() numero;
+  @Output() numeroChange: EventEmitter<string>;
 
   @Input() referencia;
   @Output() referenciaChange: EventEmitter<string>;
@@ -25,31 +28,54 @@ export class DireccionComponent implements OnInit{
   @Input() longitud;
   @Output() longitudChange: EventEmitter<string>;
 
+  @Output() validEvent: EventEmitter<boolean>;
+
   lat = -31.4135;
   lng = -64.18105;
-  lngM;
-  latM;
 
   enable;
 
   constructor() {
     this.ciudadChange = new EventEmitter();
-    this.direccionChange = new EventEmitter();
+    this.calleChange = new EventEmitter();
+    this.numeroChange = new EventEmitter();
     this.referenciaChange = new EventEmitter();
     this.latitudChange = new EventEmitter();
     this.longitudChange = new EventEmitter();
+    this.validEvent = new EventEmitter();
   }
 
-  setCity() {
-    this.enable = true;
+  ngOnInit(): void {
+    this.initForm();
+    this.setData();
+    this.createListeners();
+  }
 
-    this.coordenadasMap(this.ciudad);
-    this.ciudadChange.emit(this.ciudad);
+  initForm() {
+    this.DireccionForm = new FormGroup({
+      ciudadPedido: new FormControl('', [Validators.required]),
+      callePedido: new FormControl('', [Validators.maxLength(100), this.requiereDireccion]),
+      numeroPedido: new FormControl('', [Validators.required]),
+      referenciaPedido: new FormControl('', [Validators.maxLength(150)]),
+    })
+  }
 
-    this.latitud = '';
-    this.latitudChange.emit(this.latitud);
-    this.longitud = '';
-    this.longitudChange.emit(this.longitud);
+  requiereDireccion() {
+   /* if( !this.latitud && !this.longitud ) {
+      return {
+        requiereDireccion: true
+      };
+    }*/
+    return null;
+  }
+
+  setData(){
+    this.DireccionForm.reset({
+      ciudadPedido: this.ciudad,
+      callePedido: this.calle,
+      numeroPedido: this.numero,
+      referenciaPedido: this.referencia,
+    });
   }
 
   setCoordenadas(coord) {
@@ -68,24 +94,67 @@ export class DireccionComponent implements OnInit{
   }
 
   disableForm() {
-    this.enable = false;
-    this.direccion = '';
-    this.direccionChange.emit(this.direccion);
+    this.DireccionForm.get('callePedido').disable();
+    this.DireccionForm.get('numeroPedido').disable();
+
+    this.setAndEmitCalle('');
+    this.setAndEmitNumero('');
   }
 
+  setAndEmitCiudad(value) {
+    if (value) {
+      this.DireccionForm.get('callePedido').disabled && this.DireccionForm.get('callePedido').enable();
+      this.DireccionForm.get('numeroPedido').disabled && this.DireccionForm.get('numeroPedido').enable();
 
+      this.ciudad = value;
+      this.ciudadChange.emit(this.ciudad);
 
-  ngOnInit(): void {
-    this.initForm();
+      this.coordenadasMap(this.ciudad);
 
+      this.latitud = '';
+      this.latitudChange.emit(this.latitud);
+      this.longitud = '';
+      this.longitudChange.emit(this.longitud);
+    }
   }
 
-  initForm() {
-    this.DireccionForm = new FormGroup({
+  setAndEmitCalle(value) {
+    this.calle = value;
+    this.calleChange.emit(this.calle);
+  }
+  setAndEmitNumero(value) {
+    this.numero = value;
+    this.numeroChange.emit(this.numero);
+  }
+  setAndEmitReferencia(value) {
+    this.referencia = value;
+    this.referenciaChange.emit(this.referencia);
+  }
 
-      callePedido: new FormControl('', [Validators.maxLength(100), Validators.required]),
-      referenciaPedido: new FormControl('', [Validators.maxLength(150)]),
-      numeroPedido: new FormControl('', [Validators.required, Validators.pattern('[0-9]{2,4}')])
-    })
+  getCiudad() {
+    return this.DireccionForm.get('ciudadPedido').value;
+  }
+
+  getCalle() {
+    return this.DireccionForm.get('callePedido').value;
+  }
+
+  getNumero() {
+    return this.DireccionForm.get('numeroPedido').value;
+  }
+
+  getReferencia() {
+    return this.DireccionForm.get('referenciaPedido').value;
+  }
+
+  createListeners() {
+    this.DireccionForm.statusChanges.subscribe(status => {
+      this.setAndEmitCiudad(this.getCiudad());
+      this.setAndEmitCalle(this.getCalle());
+      this.setAndEmitNumero(this.getNumero());
+      this.setAndEmitReferencia(this.getReferencia());
+
+      this.validEvent.emit(status!=='INVALID');
+    });
   }
 }

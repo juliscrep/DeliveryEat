@@ -96,7 +96,7 @@ export class PedidoComponentComponent {
       this.setAndEmitDireccion( this.getDireccion() );
       this.setAndEmitPrecio( this.getPrecio() );      
 
-      this.validEvent.emit(status=='INVALID');
+      this.validEvent.emit(status!=='INVALID');
     });
   }
 }

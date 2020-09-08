@@ -12,8 +12,11 @@ import {ComponentsModule} from '../../components/components.module';
 })
 export class PedidoComponent implements OnInit {
 
-  step = 0;
+  step = 1;
   pedido: Pedido;
+  validaciones;
+
+  isLoading: boolean;
 
   localidades = [];
 
@@ -22,6 +25,8 @@ export class PedidoComponent implements OnInit {
     private addressService: AddressService,
     private modulos: ComponentsModule,
   ) {
+    this.validaciones = new Array();
+
     this.pedido = {
       descripcion: '',
       imagen: null,
@@ -32,7 +37,8 @@ export class PedidoComponent implements OnInit {
       },
       direccionEntrega: {
         ciudad: '',
-        direccion: '',
+        calle: '',
+        numero: '',
         referencia: '',
         latitud: '',
         longitud: ''
@@ -46,14 +52,16 @@ export class PedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.addressService.getLocalidadesByProvincia('cordoba')
       .subscribe(loc => {
         this.localidades = sortCitiesByName(loc.localidades);
+        this.isLoading = false;
       });
   }
 
   nextStep() {
-    (this.step < 4)&& (this.step++);
+    (this.step < 4 && this.validaciones[this.step])&& (this.step++);
     console.log(this.pedido); 
     this.modulos   
   }
@@ -67,8 +75,10 @@ export class PedidoComponent implements OnInit {
     response && this.router.navigate(['/']);
   }
 
-  setImage( image ) {
-
+  setValidacion( step, result ) {
+    this.validaciones[step] = result;
+    console.log(this.validaciones);
+    
   }
 
 }
