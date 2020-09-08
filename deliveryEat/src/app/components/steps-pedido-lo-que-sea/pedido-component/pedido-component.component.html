@@ -1,33 +1,63 @@
 <div class="row justify-content-center mt-3">
     <div class="col-10 col-md-6">
+    <form [formGroup]="PedidoForm">
+
         <div class="form-group">
             <label for="id-producto"><strong>¿Que debe buscar el cadete? </strong> </label>
             <textarea class="form-control" name="descripcion" id="id-producto" cols="30" rows="3"
-                placeholder="Buscar sarasa" [(ngModel)]="descripcion"
-                (keydown)="this.descripcionChange.emit(this.descripcion)"></textarea>
-            <div class="invalid-feedback d-block" *ngIf="errors.descripcion">
-                {{errors.descripcion}}
-            </div>
+                placeholder="describa su pedido " 
+               
+                formControlName="descripcionPedido"
+                ></textarea>
+                <span class="help-block" *ngIf="((PedidoForm.get('descripcionPedido').touched ||
+                PedidoForm.get('descripcionPedido').dirty) &&
+                PedidoForm.get('descripcionPedido').errors)">
+                    <span *ngIf="PedidoForm.get('descripcionPedido').errors.required">
+                        <h6>Campo requerido</h6>
+                    </span>
+                    <span *ngIf="PedidoForm.get('descripcionPedido').errors.maxlength">
+                        <h6>Ingrese como maximo 500 caracteres </h6>
+                    </span>
+                
+</span>
+
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
             </div>
-            <input type="number" class="form-control" id="precioProductoid" placeholder="Precio del producto"
-                name="precioProducto" [(ngModel)]="precio" (keydown)="this.precioChange.emit(this.precio)">
-            <div class="invalid-feedback d-block" *ngIf="errors.precio">
-                {{errors.precio}}
-            </div>
-        </div>
+            <input type="number" class="form-control" id="precioProductoid" 
+                placeholder="Precio del producto"
+                name="precioProducto"
+                formControlName="precioPedido"
+                value=10 
+                [(ngModel)]="precio" 
+                (keydown)="this.precioChange.emit(this.precio)">
+                <span class="help-block" *ngIf="((PedidoForm.get('precioPedido').touched ||
+                                            PedidoForm.get('precioPedido').dirty) &&
+                                            PedidoForm.get('precioPedido').errors)">
+                                                <span *ngIf="PedidoForm.get('precioPedido').errors.required">
+                                                    <h6>Campo requerido</h6>
+                                                </span>
+                                                <span *ngIf="PedidoForm.get('precioPedido').errors.pattern">
+                                                    <h6>Formato no válido</h6>
+                                                </span>
+                                               <span *ngIf="esNoValido()">
+                                                <h6>Monto inválido</h6>
+                                               </span> 
+                </span>
+
 
         <input type="string" class="form-control mt-1" id="direccionLocal"
-            placeholder="Dirección de retiro del producto" name="direccionLocal"
-            [(ngModel)]="direccionRetiroDelProducto"
-            (keydown)="this.direccionRetiroDelProductoChange.emit(this.direccionRetiroDelProducto)">
-        <div class="invalid-feedback d-block" *ngIf="errors.direccion">
-            {{errors.direccion}}
+        placeholder="Dirección de retiro del producto" name="direccionLocal"
+        [(ngModel)]="direccionRetiroDelProducto"
+        (keydown)="this.direccionRetiroDelProductoChange.emit(this.direccionRetiroDelProducto)">
+    <div class="invalid-feedback d-block" *ngIf="errors.direccion">
+        {{errors.direccion}}
         </div>
+    </form>
     </div>
+
 </div>
 
 <div class="row justify-content-center mt-5">

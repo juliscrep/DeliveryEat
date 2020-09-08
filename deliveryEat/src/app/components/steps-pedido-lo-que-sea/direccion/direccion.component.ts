@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-direccion',
   templateUrl: './direccion.component.html',
   styleUrls: ['./direccion.component.css']
 })
-export class DireccionComponent {
+export class DireccionComponent implements OnInit{
+  public DireccionForm: FormGroup;
 
   @Input() localidades = [];
 
@@ -72,4 +73,19 @@ export class DireccionComponent {
     this.direccionChange.emit(this.direccion);
   }
 
+
+
+  ngOnInit(): void {
+    this.initForm();
+
+  }
+
+  initForm() {
+    this.DireccionForm = new FormGroup({
+
+      callePedido: new FormControl('', [Validators.maxLength(100), Validators.required]),
+      referenciaPedido: new FormControl('', [Validators.maxLength(150)]),
+      numeroPedido: new FormControl('', [Validators.required, Validators.pattern('[0-9]{2,4}')])
+    })
+  }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Pedido } from '../../domain/interfaces/pedido.interface';
 import sortCitiesByName from '../../helpers/sortCities.helper';
 import { AddressService } from '../../services/address.service';
+import {ComponentsModule} from '../../components/components.module';
 
 @Component({
   selector: 'app-pedido',
@@ -19,6 +20,7 @@ export class PedidoComponent implements OnInit {
   constructor(
     private router: Router,
     private addressService: AddressService,
+    private modulos: ComponentsModule,
   ) {
     this.pedido = {
       descripcion: '',
@@ -51,8 +53,9 @@ export class PedidoComponent implements OnInit {
   }
 
   nextStep() {
-    (this.step < 4) && (this.step++);
-    console.log(this.pedido);    
+    (this.step < 4)&& (this.step++);
+    console.log(this.pedido); 
+    this.modulos   
   }
 
   prevStep() {

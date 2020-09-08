@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pedido-component',
@@ -6,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pedido-component.component.css']
 })
 export class PedidoComponentComponent {
+  public PedidoForm: FormGroup;
 
   @Input() precio: number;
   @Output() precioChange : EventEmitter< number >;
@@ -32,6 +34,24 @@ export class PedidoComponentComponent {
     this.direccionRetiroDelProductoChange = new EventEmitter();
     this.imagenChange = new EventEmitter();
     this.validateEvent = new EventEmitter();
+  }
+   
+  ngOnInit():void {
+   this.initForm();
+
+  }
+
+  initForm(){
+    this.PedidoForm= new FormGroup({
+
+      descripcionPedido:new FormControl('',[Validators.maxLength(500),Validators.required]),
+      precioPedido:new FormControl('',[Validators.pattern('^[0-9]{5}')
+      ,Validators.required]),
+    })
+  }
+
+  esNoValido(){
+    return this.PedidoForm.controls.precioPedido.value < 10;
   }
 
   selectImage( image ) {
